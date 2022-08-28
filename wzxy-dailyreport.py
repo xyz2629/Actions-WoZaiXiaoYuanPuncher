@@ -241,12 +241,17 @@ class WoZaiXiaoYuanPuncher:
             }
             body=json.dumps(msg).encode(encoding='utf-8')
             headers = {'Content-Type':'application/json'}
-            r = requests.post(url, data=body, headers=headers).json()
-            if r["code"] == 200:
-                print("消息经 pushplus 推送成功")
-            else:
-                print("pushplus: " + str(r['code']) + ": " + str(r['msg']))
-                print("消息经 pushplus 推送失败，请检查错误信息")
+            rbq = 1
+            if self.status_code != 1 and self.status_code != -1:
+                r = requests.post(url, data=body, headers=headers).json()
+                rbq = 2
+                    if r["code"] == 200:
+                        print("消息经 pushplus 推送成功")
+                    else:
+                        print("pushplus: " + str(r['code']) + ": " + str(r['msg']))
+                        print("消息经 pushplus 推送失败，请检查错误信息")
+            if rbq = 1:
+                print("一切正常，未推送")
         if os.environ.get('GOBOT_URL'):
             # go_cqhttp 推送
             GOBOT_URL = os.environ["GOBOT_URL"]
