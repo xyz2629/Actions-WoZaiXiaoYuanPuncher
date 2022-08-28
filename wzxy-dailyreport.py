@@ -250,7 +250,7 @@ class WoZaiXiaoYuanPuncher:
                 else:
                     print("pushplus: " + str(r['code']) + ": " + str(r['msg']))
                     print("消息经 pushplus 推送失败，请检查错误信息")
-            if rbq = 1:
+            if rbq == 1:
                 print("一切正常，未推送")
         if os.environ.get('GOBOT_URL'):
             # go_cqhttp 推送
